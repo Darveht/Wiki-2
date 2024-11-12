@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glam 2.4</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #333;
+    }
+    .header, .style-switcher, .future-languages, .grid-container {
+      text-align: center;
+      padding: 20px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #232f3e;
+      color: #fff;
+      padding: 10px;
+    }
+    .header input, .header select {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+      border: none;
+    }
+    .header input {
+      padding-right: 30px;
+    }
+    .header select {
+      margin-left: 10px;
+    }
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 30px;
+    }
+    .grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    .grid-item {
+      background-color: #fff;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+    .grid-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .spinner {
+      display: none;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .stars i {
+  font-size: 24px;
+  color: #ddd;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.stars i.active,
+.stars i:hover,
+.stars i:hover ~ i {
+  color: gold;
+}
+
+.stars i.selected {
+  color: gold;
+}
+    .follow-btn {
+      background-color: #ff9900;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .follow-btn:hover {
+      background-color: #e68900;
+    }
+    .future-languages, .future-styles {
+      background-color: #fff3cd;
+      padding: 20px;
+    }
+    .countdown {
+      margin-top: 10px;
+      color: #d9534f;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #232f3e;
+      color: #fff;
+    }
+    .menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: #232f3e;
+      color: white;
+      width: 200px;
+      height: 100%;
+      padding: 20px;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    }
+    .menu a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin: 10px 0;
+    }
+    .menu a:hover {
+      background-color: #444;
+    }
+    .menu.active {
+      display: block;
+    }
+    .like-dislike {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+    .like-dislike img {
+      width: 30px;
+      cursor: pointer;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <input type="text" id="searchInput" placeholder="Buscar en Glam 2.4...">
+    <span class="menu-toggle" onclick="toggleMenu()">&#9776;</span>
+    <select id="languageSelect">
+      <option value="es">Español</option>
+      <option value="en">Inglés</option>
+      <option value="pt">Portugués</option>
+      <option value="de">Alemán</option>
+<option value="ar">Árabe</option>
+<option value="zh">Chino (Mandarín)</option>
+<option value="ru">Ruso</option>
+<option value="hi">Hindi</option>
+<option value="tr">Turco</option>
+<option value="el">Griego</option>
+<option value="he">Hebreo</option>
+<option value="sv">Sueco</option>
+<option value="nl">Holandés</option>
+<option value="no">Noruego</option>
+<option value="da">Danés</option>
+<option value="fi" disabled>Finés</option>
+<option value="hu">Húngaro</option>
+<option value="pl">Polaco</option>
+<option value="cs">Checo</option>
+<option value="ro">Rumano</option>
+<option value="uk">Ucraniano</option>
+<option value="bn" disabled>Bengalí</option>
+<option value="ta">Tamil</option>
+<option value="ur">Urdu</option>
+<option value="id">Indonesio</option>
+<option value="ms">Malayo</option>
+<option value="tl">Filipino (Tagalo)</option>
+<option value="fa" disabled>Persa (Farsi)</option>
+<option value="af" disabled>Afrikáans</option>
+<option value="sq">Albanés</option>
+<option value="am" disabled>Amárico</option>
+<option value="hy" disabled>Armenio</option>
+<option value="az">Azerí</option>
+<option value="eu" disabled>Vasco</option>
+<option value="be">Bielorruso</option>
+<option value="bs">Bosnio</option>
+<option value="bg">Búlgaro</option>
+<option value="ca">Catalán</option>
+<option value="km" disabled>Camboyano</option>
+<option value="ny" disabled>Chichewa</option>
+<option value="hr">Croata</option>
+<option value="et" disabled>Estonio</option>
+<option value="fj" disabled>Fiyiano</option>
+<option value="gl">Gallego</option>
+<option value="ka">Georgiano</option>
+<option value="ha" disabled>Hausa</option>
+<option value="is">Islandés</option>
+<option value="ig">Igbo</option>
+<option value="ga" disabled>Irlandés</option>
+<option value="jw" disabled>Javanés</option>
+<option value="kk" disabled>Kazajo</option>
+<option value="ky" disabled>Kirguís</option>
+<option value="lo" disabled>Lao</option>
+<option value="lv">Letón</option>
+<option value="lt">Lituano</option>
+<option value="lb" disabled>Luxemburgués</option>
+<option value="mk">Macedonio</option>
+<option value="mg" disabled>Malgache</option>
+<option value="mt">Maltés</option>
+<option value="mi" disabled>Maorí</option>
+<option value="mn">Mongol</option>
+<option value="ne">Nepalí</option>
+<option value="pa" disabled>Panyabí</option>
+<option value="ps" disabled>Pashto</option>
+<option value="si" disabled>Cingalés</option>
+<option value="sk">Eslovaco</option>
+<option value="sl" disabled>Esloveno</option>
+<option value="so" disabled>Somalí</option>
+<option value="sw">Swahili</option>
+<option value="tg" disabled>Tayiko</option>
+<option value="te">Telugu</option>
+<option value="uz" disabled>Uzbeko</option>
+<option value="yo" disabled>Yoruba</option>
+<option value="zu">Zulú</option>
+    </select>
+  </div>
+
+  <div class="menu" id="menu">
+    <h3>Ajustes</h3>
+    <a href="#" onclick="changeStyle()">Cambiar estilo</a>
+    <a href="#" onclick="changeFontSize()">Tamaño de fuente</a>
+    <a href="#" onclick="showPrivacy()">Términos de privacidad</a>
+    <select id="menuLanguageSelect" onchange="changeLanguageFromMenu()">
+      <option value="es">Español</option>
+      <option value="en">Inglés</option>
+      <option value="pt">Portugués</option>
+      <option value="ja">Japonés</option>
+      <option value="fr">Francés</option>
+      <option value="it">Italiano</option>
+      <option value="de">Aleman </option>
+      <option value="ko">Coreano</option>
+      <option value="vi" selected>Vietnamita</option>
+      <option value="th">Tailandés</option>
+    </select>
+  </div>
+
+  <div id="gridContainer" class="grid-container"></div>
+  <div class="spinner" id="spinner"></div>
+
+  <div class="future-languages">
+    <p>Próximamente disponible en: Finés,Bengalí y Persa </p>
+    <div id="countdown" class="countdown"></div>
+  </div>
+
+  <div class="footer">
+    <p>Powered by Wikipedia</p>
+  </div>
+
+  <script>
+    let currentPage = 1;
+    let query = '';
+    let language = 'vi'; // Vietnamita por defecto
+    let loading = false;
+
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        searchWikipedia();
+      }
+    });
+
+    document.getElementById('languageSelect').addEventListener('change', function() {
+      language = this.value;
+      searchWikipedia();
+    });
+
+    function searchWikipedia() {
+      query = document.getElementById('searchInput').value;
+      currentPage = 1;
+      const gridContainer = document.getElementById('gridContainer');
+      gridContainer.innerHTML = '';
+      showSpinner(true);
+      fetchResults();
+    }
+
+    function showSpinner(isVisible) {
+      const spinner = document.getElementById('spinner');
+      spinner.style.display = isVisible ? 'block' : 'none';
+    }
+
+    function fetchResults() {
+      loading = true;
+      const url = `https://${language}.wikipedia.org/w/api.php?action=query&list=search&srsearch=${query}&utf8=&format=json&origin=*&srlimit=10&sroffset=${(currentPage - 1) * 10}`;
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const results = data.query.search;
+          displayResults(results);
+          showSpinner(false);
+          loading = false;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          showSpinner(false);
+          loading = false;
+        });
+    }
+
+    function displayResults(results) {
+      const gridContainer = document.getElementById('gridContainer');
+      results.forEach(result => {
+        const pageUrl = `https://${language}.wikipedia.org/?curid=${result.pageid}`;
+        const imageUrl = `https://${language}.wikipedia.org/w/api.php?action=query&titles=${result.title}&prop=pageimages&format=json&origin=*&piprop=thumbnail&pithumbsize=500`;
+
+        fetch(imageUrl)
+          .then(response => response.json())
+          .then(data => {
+            const image = data.query.pages[Object.keys(data.query.pages)[0]].thumbnail?.source || '';
+            const gridItem = document.createElement('div');
+            gridItem.classList.add('grid-item');
+            gridItem.innerHTML = `
+              <img src="${image}" alt="${result.title}">
+              <h4>${result.title}</h4>
+              <p>${result.snippet}</p>
+              <a href="${pageUrl}" target="_blank">Ver más</a>
+              <div class="stars" data-pageid="${result.pageid}">
+                <i onclick="ratePage(1)" class="active">★</i>
+                <i onclick="ratePage(2)">★</i>
+                <i onclick="ratePage(3)">★</i>
+                <i onclick="ratePage(4)">★</i>
+                <i onclick="ratePage(5)">★</i>
+              </div>
+              <div class="like-dislike">
+                <img src="https://cdn-icons-png.flaticon.com/512/6818/6818915.png" onclick="likePage(${result.pageid})">
+                <img src="https://images.emojiterra.com/openmoji/v13.1/512px/1f494.png" onclick="dislikePage(${result.pageid})">
+              </div>
+            `;
+            gridContainer.appendChild(gridItem);
+          });
+      });
+    }
+
+    function ratePage(rating) {
+      alert(`Has dado una calificación de ${rating} estrellas.`);
+    }
+
+    function likePage(pageid) {
+      alert(`Te gusta la página con ID: ${pageid}`);
+    }
+
+    function dislikePage(pageid) {
+      alert(`No te gusta la página con ID: ${pageid}`);
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('active');
+    }
+
+    function changeStyle() {
+      document.body.style.backgroundColor = document.body.style.backgroundColor === 'lightgray' ? '#fff' : 'lightgray';
+    }
+
+    function changeFontSize() {
+      const currentSize = document.body.style.fontSize || '16px';
+      const newSize = currentSize === '16px' ? '18px' : '16px';
+      document.body.style.fontSize = newSize;
+    }
+
+    function showPrivacy() {
+      alert('Mostrando términos de privacidad...');
+    }
+
+    function changeLanguageFromMenu() {
+      const newLang = document.getElementById('menuLanguageSelect').value;
+      document.getElementById('languageSelect').value = newLang;
+      language = newLang;
+      searchWikipedia();
+    }
+
+    function countDown() {
+      let countDownDate = new Date('Nov 13, 2024 23:59:59').getTime();
+      let x = setInterval(function() {
+        let now = new Date().getTime();
+        let distance = countDownDate - now;
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById('countdown').innerHTML = 'La cuenta atrás ha terminado';
+        }
+      }, 1000);
+    }
+
+    countDown();
+  </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
